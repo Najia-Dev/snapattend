@@ -1,0 +1,31 @@
+{
+  "hash": "58f7c7cd",
+  "configHash": "d45d56a4",
+  "lockfileHash": "cd881c18",
+  "browserHash": "dd89e54f",
+  "optimized": {
+    "chart.js/auto": {
+      "src": "../../node_modules/chart.js/auto/auto.js",
+      "file": "chart__js_auto.js",
+      "fileHash": "14b3a085",
+      "needsInterop": false
+    },
+    "bootstrap": {
+      "src": "../../node_modules/bootstrap/dist/js/bootstrap.esm.js",
+      "file": "bootstrap.js",
+      "fileHash": "50b16389",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "4b5f0d62",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-UVKRO5ER": {
+      "file": "chunk-UVKRO5ER.js"
+    }
+  }
+}
