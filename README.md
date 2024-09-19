@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -76,3 +77,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 =======
 # SnapAttend
 >>>>>>> 31f3c99f660ee1e2f98c38d67e646126c5db050a
+=======
+# snapattend
+>>>>>>> 93a2642948131968cfef480dbb492bacdbe7f422
