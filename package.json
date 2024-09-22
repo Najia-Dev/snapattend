@@ -17,6 +17,7 @@
         "@tensorflow/tfjs": "^4.20.0",
         "@vladmandic/face-api": "^1.7.13",
         "chart.js": "^4.4.4",
+        "grapesjs": "^0.21.13",
         "laravel-echo": "^1.16.1",
         "pusher-js": "^8.4.0-rc2"
     }

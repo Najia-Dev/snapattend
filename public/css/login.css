@@ -1,0 +1,49 @@
+.account-block {
+    background: url('/images/background.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+}
+
+.account-testimonial {
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    margin-bottom: 50px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Style teks "LOGIN" */
+.h4.font-weight-bold.text-theme {
+    color: #007bff; /* Warna biru */
+}
+
+/* Style tombol login */
+.btn-theme {
+    background-color: #007bff; /* Warna biru */
+    color: white;              /* Warna teks putih */
+    padding: 5px 20px;        /* Padding */
+    border: none;
+    border-radius: 5px;        /* Sudut bulat */
+    cursor: pointer;
+}
+
+.btn-theme:hover {
+    background-color: #1586fe; /* Warna saat hover */
+}

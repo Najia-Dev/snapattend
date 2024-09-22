@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: snapattend
+    env: php
+    plan: free
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_KEY
+        value: base64:R/z7Dbg5LBQcnqXnuJsox9it3Zc3pt6BgVdbQU3y6Eo=
+

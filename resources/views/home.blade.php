@@ -4,8 +4,8 @@
 <div class="container">
     <!-- Profil Pengguna -->
     <div class="row mb-4">
-        <div class="col-md-4 text-center">
-            <div class="profile-picture-wrapper" style="position: relative; width: 150px; height: 150px; overflow: hidden; margin: auto;">
+        <div class="col-12 col-sm-4 text-center">
+            <div class="profile-picture-wrapper" style="position: relative; width: 120px; height: 120px; overflow: hidden; margin: auto;">
                 <img id="profileImage" src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/placeholder.png') }}" 
                      alt="Foto Profil" class="rounded-circle" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
             </div>
@@ -15,20 +15,21 @@
                 <button type="submit" class="btn btn-primary mt-2">Update Foto</button>
             </form>
         </div>
-        <div class="col-md-8">
-            <h3 class="text-success">Selamat datang di Snapattend</h3>
-            <p>Nama: {{ $user->name }}</p>
-            <p>Unit: {{ $user->unit }}</p>
-            <p>Jabatan: {{ $user->jabatan }}</p>
-            <!-- Tombol Link ke Halaman Absensi -->
-            <a href="{{ route('absensi.create') }}" class="btn btn-success btn-lg mt-4">Mulai Absensi</a>
+        <div class="col-12 col-sm-8 text-sm-left" style="line-height: 1.2;">
+            <h5 class="text-success">DATA ANDA</h5>
+            <p style="margin-bottom: 2px;">Nama: {{ $user->name }}</p>
+            <p style="margin-bottom: 2px;">Unit: {{ $user->unit }}</p>
+            <p style="margin-bottom: 2px;">Jabatan: {{ $user->jabatan }}</p>
         </div>
+        <a href="{{ route('absensi.create') }}" class="btn btn-success btn-sm mt-2">Mulai Absensi</a>
     </div>
 
     <!-- Rekap Absensi Hari Ini -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <h4 id="currentTime" class="text-center text-primary">ABSENSI HARI INI</h4>
+        <h5 class="text-primary">ABSENSI HARI INI</h5>
+<p id="currentTime" class="text-muted"></p>
+
             <div class="row">
                 @foreach(['Masuk', 'Istirahat', 'Pulang'] as $type)
                     <div class="col-md-4 mb-3">
@@ -50,23 +51,24 @@
         </div>
     </div>
 
-    <!-- RINGKASAN REKAP Secara Horizontal -->
-    <div class="row mb-4">
-        <div class="col-md-12 text-center">
-            <h3 class="text-info">RINGKASAN REKAP</h3>
-            <div class="d-flex justify-content-around flex-wrap">
-                <div class="ringkasan-box">
-                    <h5>Total Hadir</h5>
-                    <span id="totalHadir">0</span>
-                </div>
-                <div class="ringkasan-box">
-                    <h5>Total Terlambat</h5>
-                    <span id="totalTerlambat">0</span>
-                </div>
-                <div class="ringkasan-box">
-                    <h5>Total Izin</h5>
-                    <span id="totalIzin">0</span>
-                </div>
+     <!-- Ringkasan Rekap -->
+     <div class="row mb-2 text-center">
+        <div class="col-4" style="padding-right: 5px;">
+            <div class="ringkasan-box shadow-sm p-1">
+                <h6 style="font-size: 14px;">Total Hadir</h6>
+                <span id="totalHadir">0</span>
+            </div>
+        </div>
+        <div class="col-4" style="padding-left: 5px; padding-right: 5px;">
+            <div class="ringkasan-box shadow-sm p-1">
+                <h6 style="font-size: 14px;">Total Terlambat</h6>
+                <span id="totalTerlambat">0</span>
+            </div>
+        </div>
+        <div class="col-4" style="padding-left: 5px;">
+            <div class="ringkasan-box shadow-sm p-1">
+                <h6 style="font-size: 14px;">Total Izin</h6>
+                <span id="totalIzin">0</span>
             </div>
         </div>
     </div>
@@ -186,22 +188,23 @@ document.getElementById('toggleTable').addEventListener('click', function() {
 
 // Fungsi untuk membuat konten tabel secara horizontal
 function generateTableContent(data) {
-    let content = `<table id="rekapTableContent" class="table table-bordered display">
+    let content = `
+    <table id="rekapTableContent" class="table table-striped table-bordered display" style="font-size: 12px; text-align: center;">
         <thead>
             <tr>
                 <th>Tanggal</th>
                 <th>Masuk</th>
-                <th>Radius</th>
+                <th>Radius Masuk</th>
                 <th>Istirahat</th>
-                <th>Radius</th>
+                <th>Radius Istirahat</th>
                 <th>Pulang</th>
-                <th>Radius</th>
+                <th>Radius Pulang</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>`;
 
-    // Group data by date
+    // Grouping data by date
     const groupedData = data.reduce((acc, absensi) => {
         if (!acc[absensi.date]) {
             acc[absensi.date] = { Masuk: '-', Istirahat: '-', Pulang: '-', MasukRadius: '-', IstirahatRadius: '-', PulangRadius: '-', status: '-' };
@@ -210,7 +213,7 @@ function generateTableContent(data) {
         acc[absensi.date][absensi.type] = absensi.time;
         acc[absensi.date][`${absensi.type}Radius`] = absensi.is_in_radius ? 'Dalam Radius' : 'Luar Radius';
 
-        // Set status based on "Masuk" type absensi only
+        // Set status based on "Masuk" type only
         if (absensi.type === 'Masuk') {
             acc[absensi.date].status = absensi.status;
         }
@@ -220,7 +223,8 @@ function generateTableContent(data) {
 
     // Generate table rows
     for (const [date, absensi] of Object.entries(groupedData)) {
-        content += `<tr>
+        content += `
+        <tr>
             <td>${date}</td>
             <td>${absensi.Masuk}</td>
             <td><span style="color: ${absensi.MasukRadius === 'Dalam Radius' ? 'green' : 'red'};">${absensi.MasukRadius}</span></td>
@@ -235,6 +239,7 @@ function generateTableContent(data) {
     content += `</tbody></table>`;
     return content;
 }
+
 
 // Inisialisasi DataTable
 function initializeDataTable() {
@@ -330,8 +335,9 @@ function updateTime() {
     const currentDate = new Date();
     const currentTime = currentDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     const currentDateString = currentDate.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
-    document.getElementById('currentTime').textContent = `ABSENSI HARI INI - ${currentTime} - ${currentDateString}`;
+    document.getElementById('currentTime').textContent = `${currentTime} - ${currentDateString}`;
 }
+
 setInterval(updateTime, 1000);
 updateTime();
 </script>
