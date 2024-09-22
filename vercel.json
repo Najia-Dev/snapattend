@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 {
     "routes": [
       { "handle": "filesystem" },
       { "src": "/(.*)", "dest": "/public/index.php" }
     ]
   }
+=======
+{
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/(.*)", "dest": "/public/index.php" }
+    ]
+  }
+>>>>>>> 6ee13b329237c3ea5f1b8e0c9360430e4f3e6b86
   
